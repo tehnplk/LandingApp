@@ -12,8 +12,6 @@
    npm install
    npm run dev
    ```
-3. ชี้ URL Webhook LINE ของคุณไปที่ `/api/line/webhook` ในการปรับใช้งาน.
+3. ชี้ URL Webhook LINE ของคุณไปที่ `/api/line/webhook` ในการปรับใช้งาน
 
-เอ็นด์พอยต์จะตรวจสอบส่วนหัว `x-line-signature` ด้วย channel secret ของคุณ และตอบกลับอย่างรวดเร็วด้วยสรุป JSON.
-
-เมื่อมี access token ระบบจะตอบกลับข้อความด้วยข้อความ echo.
+เอ็นด์พอยต์จะตรวจสอบส่วนหัว `x-line-signature` ด้วย channel secret ของคุณ และตอบกลับอย่างรวดเร็วด้วยสรุป JSON. นอกจากนี้ เมื่อมี access token ระบบจะตอบกลับข้อความด้วยข้อความ echo.
