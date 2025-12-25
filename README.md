@@ -1,17 +1,17 @@
-# LandingApp – Next.js 16.1 LINE Webhook
+# LandingApp – Webhook LINE ด้วย Next.js 16.1
 
-This project exposes a backend API endpoint for LINE Messaging API webhooks using Next.js 16.1.
+โปรเจกต์นี้เปิดเผยจุดเชื่อมต่อ API ฝั่งแบ็กเอนด์สำหรับ Webhook ของ LINE Messaging API ด้วย Next.js 16.1
 
-## Getting started
+## เริ่มต้นใช้งาน
 
-1. Copy `.env.example` to `.env` and provide your credentials:
-   - `LINE_CHANNEL_SECRET` (required) – from the LINE Developers Console.
-   - `LINE_CHANNEL_ACCESS_TOKEN` (optional) – enable echo replies to inbound text messages.
-2. Install dependencies and start the dev server:
+1. คัดลอก `.env.example` ไปเป็น `.env` และกรอกข้อมูลรับรองของคุณ:
+   - `LINE_CHANNEL_SECRET` (จำเป็น) – รับได้จาก LINE Developers Console.
+   - `LINE_CHANNEL_ACCESS_TOKEN` (ไม่บังคับ) – เปิดใช้งานการตอบกลับข้อความตัวอักษรแบบ echo
+2. ติดตั้ง dependencies และเริ่มเซิร์ฟเวอร์พัฒนา:
    ```bash
    npm install
    npm run dev
    ```
-3. Point your LINE webhook URL to `/api/line/webhook` on your deployment.
+3. ชี้ URL Webhook ของ LINE ของคุณไปที่ `/api/line/webhook` ในการดีพลอย
 
-The endpoint validates the `x-line-signature` header with your channel secret and responds quickly with a JSON summary. When an access token is provided, it also replies to text messages with an echo message.
+เอ็นด์พอยต์จะตรวจสอบส่วนหัว `x-line-signature` ด้วย channel secret ของคุณ และตอบกลับอย่างรวดเร็วด้วยสรุป JSON เมื่อมี access token จะตอบกลับข้อความตัวอักษรด้วยข้อความ echo ด้วย
