@@ -32,6 +32,14 @@ async function sendTextReply(replyToken, text, accessToken) {
     }),
   });
 
+  if (!res.ok) {
+    console.warn(
+      "[line-webhook] Reply failed",
+      res.status,
+      res.statusText,
+    );
+  }
+
   return res.ok;
 }
 
