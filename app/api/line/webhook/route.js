@@ -9,10 +9,13 @@ const MAX_MESSAGE_LENGTH = 500;
 
 function verifySignature(secret, body, signature) {
   if (!signature) return false;
+  const normalizedSignature = signature.startsWith("sha256=")
+    ? signature.slice("sha256=".length)
+    : signature;
   const hmac = crypto.createHmac("sha256", secret);
   hmac.update(body);
   const digestBuffer = hmac.digest();
-  const signatureBuffer = Buffer.from(signature, "base64");
+  const signatureBuffer = Buffer.from(normalizedSignature, "base64");
   if (signatureBuffer.length !== digestBuffer.length) {
     return false;
   }
@@ -82,7 +85,8 @@ export async function POST(request) {
 
       const rawText = typeof event.message.text === "string" ? event.message.text : "";
       const safeText =
-        rawText.replace(/\p{C}/gu, "").slice(0, MAX_MESSAGE_LENGTH) || "(empty message)";
+        rawText.replace(/[\u0000-\u001F\u007F]/g, "").slice(0, MAX_MESSAGE_LENGTH) ||
+        "(empty message)";
 
       try {
         return await sendTextReply(
