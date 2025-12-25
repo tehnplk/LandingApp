@@ -5,8 +5,8 @@
 ## เริ่มต้นใช้งาน
 
 1. คัดลอก `.env.example` ไปเป็น `.env` และกรอกข้อมูลรับรองของคุณ:
-   - `LINE_CHANNEL_SECRET` (จำเป็น) – รับจาก LINE Developers Console
-   - `LINE_CHANNEL_ACCESS_TOKEN` (ไม่บังคับ) – เปิดใช้งานการตอบกลับข้อความแบบ echo
+   - `LINE_CHANNEL_SECRET` (จำเป็น) – รับจาก LINE Developers Console.
+   - `LINE_CHANNEL_ACCESS_TOKEN` (ไม่บังคับ) – เปิดใช้งานการตอบกลับข้อความแบบ echo.
 2. ติดตั้ง dependencies และเริ่มเซิร์ฟเวอร์พัฒนา:
    ```bash
    npm install
