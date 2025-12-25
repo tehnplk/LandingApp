@@ -10,9 +10,8 @@ function verifySignature(secret, body, signature) {
   if (!signature) return false;
   const hmac = crypto.createHmac("sha256", secret);
   hmac.update(body);
-  const digest = hmac.digest("base64");
-  const signatureBuffer = Buffer.from(signature);
-  const digestBuffer = Buffer.from(digest);
+  const digestBuffer = hmac.digest();
+  const signatureBuffer = Buffer.from(signature, "base64");
   if (signatureBuffer.length !== digestBuffer.length) {
     return false;
   }
@@ -63,24 +62,33 @@ export async function POST(request) {
   let replied = 0;
 
   if (accessToken) {
-    for (const event of events) {
+    const replyPromises = events.map(async (event) => {
       if (
-        event?.type === "message" &&
-        event.message?.type === "text" &&
-        event.replyToken
+        event?.type !== "message" ||
+        event.message?.type !== "text" ||
+        !event.replyToken
       ) {
-        try {
-          const ok = await sendTextReply(
-            event.replyToken,
-            `Received: ${event.message.text}`,
-            accessToken,
-          );
-          if (ok) replied += 1;
-        } catch (error) {
-          // Ignore reply failures to keep webhook acknowledgement fast
-        }
+        return false;
       }
-    }
+
+      const rawText = typeof event.message.text === "string" ? event.message.text : "";
+      const safeText = rawText.replace(/\p{C}/gu, "").slice(0, 500) || "(empty message)";
+
+      try {
+        return await sendTextReply(
+          event.replyToken,
+          `Received: ${safeText}`,
+          accessToken,
+        );
+      } catch {
+        return false;
+      }
+    });
+
+    const results = await Promise.allSettled(replyPromises);
+    replied = results.filter(
+      (r) => r.status === "fulfilled" && r.value === true,
+    ).length;
   }
 
   return NextResponse.json({
