@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Dashboard - Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏥 Health Dashboard</h1>
+        <p>Your Personal Health Management System</p>
+    </header>
+    
+    <div class="container">
+        <div class="hero">
+            <h2>Welcome to Your Health Dashboard</h2>
+            <p>Monitor your health metrics, track wellness goals, and improve your lifestyle with our comprehensive health management platform.</p>
+            <button class="cta-button">Get Started</button>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>📊 Health Metrics</h3>
+                <p>Track vital signs, weight, blood pressure, and more in one place.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📅 Appointment Tracking</h3>
+                <p>Manage doctor appointments and medical records effortlessly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💊 Medication Management</h3>
+                <p>Keep track of your medications and set reminders for timely intake.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 Wellness Goals</h3>
+                <p>Set and monitor personal health goals to improve your wellbeing.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📈 Progress Analytics</h3>
+                <p>Visualize your health journey with detailed analytics and insights.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Secure & Private</h3>
+                <p>Your health data is encrypted and kept completely private.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Health Dashboard. All rights reserved. | Made with ❤️</p>
+    </footer>
+</body>
+</html>
