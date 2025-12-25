@@ -5,6 +5,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const LINE_REPLY_ENDPOINT = "https://api.line.me/v2/bot/message/reply";
+const MAX_MESSAGE_LENGTH = 500;
 
 function verifySignature(secret, body, signature) {
   if (!signature) return false;
@@ -72,7 +73,8 @@ export async function POST(request) {
       }
 
       const rawText = typeof event.message.text === "string" ? event.message.text : "";
-      const safeText = rawText.replace(/\p{C}/gu, "").slice(0, 500) || "(empty message)";
+      const safeText =
+        rawText.replace(/\p{C}/gu, "").slice(0, MAX_MESSAGE_LENGTH) || "(empty message)";
 
       try {
         return await sendTextReply(
