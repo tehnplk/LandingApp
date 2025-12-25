@@ -7,11 +7,11 @@
 1. คัดลอก `.env.example` ไปเป็น `.env` และกรอกข้อมูลรับรองของคุณ:
    - `LINE_CHANNEL_SECRET` (จำเป็น) – รับจาก LINE Developers Console.
    - `LINE_CHANNEL_ACCESS_TOKEN` (ไม่บังคับ) – เปิดใช้งานการตอบกลับข้อความแบบ echo.
-2. ติดตั้ง dependencies และเริ่มเซิร์ฟเวอร์พัฒนา:
+2. ติดตั้ง dependencies และเริ่มเซิร์ฟเวอร์การพัฒนา:
    ```bash
    npm install
    npm run dev
    ```
-3. ชี้ URL Webhook LINE ของคุณไปที่ `/api/line/webhook` ในการปรับใช้งาน
+3. ชี้ URL Webhook LINE ของคุณไปที่ `/api/line/webhook` ในการปรับใช้งาน.
 
-เอ็นด์พอยต์จะตรวจสอบส่วนหัว `x-line-signature` ด้วย channel secret ของคุณ และตอบกลับอย่างรวดเร็วด้วยสรุป JSON. นอกจากนี้ เมื่อมี access token ระบบจะตอบกลับข้อความด้วยข้อความ echo.
+เอ็นด์พอยต์จะตรวจสอบส่วนหัว `x-line-signature` ด้วย channel secret ของคุณ และตอบกลับอย่างรวดเร็วด้วยสรุป JSON. เมื่อมี access token ระบบจะตอบกลับข้อความด้วยข้อความ echo.
