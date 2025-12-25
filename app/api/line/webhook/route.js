@@ -36,11 +36,7 @@ async function sendTextReply(replyToken, text, accessToken) {
   });
 
   if (!res.ok) {
-    console.warn(
-      "[line-webhook] Reply failed",
-      res.status,
-      res.statusText,
-    );
+    console.warn("[line-webhook] Reply failed", res.status);
   }
 
   return res.ok;
@@ -85,8 +81,10 @@ export async function POST(request) {
 
       const rawText = typeof event.message.text === "string" ? event.message.text : "";
       const safeText =
-        rawText.replace(/[\u0000-\u001F\u007F]/g, "").slice(0, MAX_MESSAGE_LENGTH) ||
-        "(empty message)";
+        rawText
+          .replace(/[\u0000-\u001F\u007F]/g, "")
+          .replace(/[<>]/g, "")
+          .slice(0, MAX_MESSAGE_LENGTH) || "(empty message)";
 
       try {
         return await sendTextReply(
