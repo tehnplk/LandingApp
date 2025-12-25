@@ -18,11 +18,7 @@ export async function POST(request) {
   const signature = request.headers.get("x-line-signature");
   const rawBody = await request.text();
 
-  const normalizedSignature = signature?.startsWith("sha256=")
-    ? signature.slice("sha256=".length)
-    : signature;
-
-  if (!validateSignature(rawBody, channelSecret, normalizedSignature || "")) {
+  if (!validateSignature(rawBody, channelSecret, signature || "")) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
   }
 
@@ -37,10 +33,9 @@ export async function POST(request) {
   const accessToken = process.env.LINE_CHANNEL_ACCESS_TOKEN;
   let replied = 0;
 
-  const client =
-    accessToken && channelSecret
-      ? new Client({ channelAccessToken: accessToken, channelSecret })
-      : null;
+  const client = accessToken
+    ? new Client({ channelAccessToken: accessToken, channelSecret })
+    : null;
 
   if (client) {
     const replyPromises = events.map(async (event) => {
