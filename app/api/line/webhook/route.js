@@ -81,6 +81,7 @@ export async function POST(request) {
 
       const rawText = typeof event.message.text === "string" ? event.message.text : "";
       const safeText =
+        // Trim control chars and angle brackets before echoing text back to LINE.
         rawText
           .replace(/[\u0000-\u001F\u007F]/g, "")
           .replace(/[<>]/g, "")
